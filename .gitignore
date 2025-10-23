@@ -1,0 +1,14 @@
+  node_modules/
+  dist/
+  build/
+  *.log
+  .env
+  .env.local
+  .DS_Store
+  *.pem
+  *.key
+  .terraform/
+  *.tfstate
+  *.tfstate.backup
+  EOF
+
