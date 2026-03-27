@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+
+  encryption-service:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=info
+      - API_KEYS={"zn_test_key123":{"customerId":"cust_001","tier":"starter","name":"Test Customer"}}
+    depends_on:
+      - redis
