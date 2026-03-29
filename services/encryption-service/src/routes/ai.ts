@@ -5,7 +5,7 @@ import type { AnalyzeWithAIRequest } from '../types';
 const analyzeSchema = {
   body: {
     type: 'object' as const,
-    required: ['encryptedData', 'prompt', 'userId'],
+    required: ['encryptedData', 'prompt'],
     properties: {
       encryptedData: {
         type: 'object' as const,
