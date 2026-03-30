@@ -17,9 +17,14 @@ export function loadConfig(): Config {
 
   let apiKeys: Record<string, ApiKeyEntry>;
   try {
-    apiKeys = JSON.parse(apiKeysRaw);
+    // Try JSON first, then base64-encoded JSON (for platforms that mangle curly braces)
+    if (apiKeysRaw.startsWith('{')) {
+      apiKeys = JSON.parse(apiKeysRaw);
+    } else {
+      apiKeys = JSON.parse(Buffer.from(apiKeysRaw, 'base64').toString('utf-8'));
+    }
   } catch {
-    throw new Error('API_KEYS must be valid JSON');
+    throw new Error('API_KEYS must be valid JSON or base64-encoded JSON');
   }
 
   const databaseUrl = process.env.DATABASE_URL;
