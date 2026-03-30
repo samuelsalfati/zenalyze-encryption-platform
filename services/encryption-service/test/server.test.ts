@@ -6,6 +6,7 @@ const TEST_API_KEY = 'zn_test_key123';
 const TEST_CONFIG = {
   port: 0,
   host: '127.0.0.1',
+  databaseUrl: process.env.DATABASE_URL || 'postgresql://localhost:5432/test',
   redisUrl: 'redis://localhost:6379',
   logLevel: 'silent',
   apiKeys: {

@@ -27,7 +27,7 @@ export async function buildServer(config: Config) {
 
   // Services
   const redis = createRedisClient(config.redisUrl);
-  const storageService = new StorageService();
+  const storageService = new StorageService(config.databaseUrl);
   const usageService = new UsageService(redis);
   const aiPrivacyService = new AIPrivacyService();
 
