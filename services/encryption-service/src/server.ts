@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import type { Config } from './config';
@@ -19,7 +20,7 @@ export async function buildServer(config: Config) {
     logger: {
       level: config.logLevel,
     },
-    genReqId: () => crypto.randomUUID(),
+    genReqId: () => randomUUID(),
   });
 
   // CORS
